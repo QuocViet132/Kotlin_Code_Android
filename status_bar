@@ -1,0 +1,8 @@
+// Change color status bar in res/value/theme
+<item name="android:statusBarColor">@color/white</item>
+<item name="android:windowLightStatusBar">true</item>
+
+// Change color status bar by code
+val windowInsetController = WindowCompat.getInsetsController(window, window.decorView)
+windowInsetController.isAppearanceLightStatusBars = true
+window.statusBarColor = Color.WHITE
