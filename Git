@@ -1,0 +1,26 @@
+// Push Code
+git init
+git checkout -b develop
+git clone <Link>
+git remote add origin <Link>
+
+git add .
+git commit -m "message"
+git push -u origin develop            // -f neu muon push code len nhanh master/main do leader tao
+
+// Merge Code
+git fetch --all
+
+- Truoc khi merge can chuyen sang nhanh can merge (vd muon gop code tu nhanh B sang A) thi chuyen sang nhanh A
+- Vao phan git goc duoi ben phai man hinh kiem tra phan cap nhat cua cac nhanh (nhanh nao co mui ten mau xanh duong thi nhanh do co cap nhat code)
+- Thuc hien update
+- Bam vao > chon nhanh can merge sau do click vao lenh merge
+- Khi merge se xuat hien conflict thi thuc hien viec remove conflict
+
+git add .
+git commit -m "message"
+git push origin develop
+
+// Cac Lenh Git Basic
+git branch -a                       // xem danh sach ten cac nhanh o local va remote
+git branch -d <BranchName>          // Xoa nhanh
