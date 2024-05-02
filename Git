@@ -23,4 +23,6 @@ git push origin develop
 
 // Cac Lenh Git Basic
 git branch -a                       // xem danh sach ten cac nhanh o local va remote
-git branch -d <BranchName>          // Xoa nhanh
+git branch -d tên_nhánh             // Xoa nhanh
+git checkout tên_nhánh              // Chuyen nhanh
+git remote -v                       // Kiểm tra xem tại 1 thư mục nào đó đã có remote chưa
