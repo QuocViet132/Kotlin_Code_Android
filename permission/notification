@@ -1,7 +1,9 @@
 // AndroidManifest.xml
 <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
 
-// Activity  // Check import android.Manifest
+// Activity
+import android.Manifest
+
     private val requestPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
         if (isGranted) {
             Log.d("PermissionNotification","Permission is Granted")
@@ -28,3 +30,34 @@
     }
 
 // Send Notification
+
+    @SuppressLint("MissingPermission")
+    private fun sendNotification() {
+        val channelId = "your_channel_id"
+        val channelName = "Your Channel Name"
+
+        // Tạo kênh thông báo nếu cần thiết
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel(channelId, channelName, importance).apply {
+                description = "Your Channel Description"
+            }
+            val notificationManager: NotificationManager =
+                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+        }
+
+        // Tạo thông báo
+        val builder = NotificationCompat.Builder(this, channelId)
+            .setSmallIcon(R.drawable.ic_launcher_foreground)
+            .setContentTitle("Tiêu đề thông báo")
+            .setContentText("Nội dung thông báo")
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+
+        with(NotificationManagerCompat.from(this)) {
+            // Gửi thông báo với id thông báo duy nhất
+            notify(0, builder.build())
+        }
+    }
+
+
