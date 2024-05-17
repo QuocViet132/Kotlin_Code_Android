@@ -1,0 +1,30 @@
+// AndroidManifest.xml
+<uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+
+// Activity  // Check import android.Manifest
+    private val requestPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
+        if (isGranted) {
+            Log.d("PermissionNotification","Permission is Granted")
+        } else {
+            Log.d("PermissionNotification","Permission is NOT Granted")
+        }
+    }
+
+    private fun requestNotificationPermission() {
+        if (SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) {
+                // Do your task on permission granted
+                Toast.makeText(this,"Permission is Granted",Toast.LENGTH_SHORT).show()
+            } else if (shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS)) {
+                // Hiển thị giải thích cho người dùng tại sao quyền này cần thiết
+                Toast.makeText(this, "App need permission notification is action", Toast.LENGTH_SHORT).show()
+                // Sau đó yêu cầu quyền
+                requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+            } else {
+                // Directly ask for the permission
+                requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+            }
+        }
+    }
+
+// Send Notification
